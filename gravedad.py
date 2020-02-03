@@ -1,3 +1,6 @@
+"""sacado de https://pymunk-tutorial.readthedocs.io/en/latest/intro/intro.html#a-bouncing-ball"""
+
+
 from recursos import colores
 import pymunk
 import pymunk.pygame_util
