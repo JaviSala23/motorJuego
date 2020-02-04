@@ -1,37 +1,33 @@
-"""sacado de https://pymunk-tutorial.readthedocs.io/en/latest/intro/intro.html#a-bouncing-ball"""
-
-
-from recursos import colores
 import pymunk
 import pymunk.pygame_util
 import pygame
 
+GRAY = (220, 220, 220)
 space = pymunk.Space()
 space.gravity = 0, -900
 b0 = space.static_body
 
-
 class App:
+    size = 700, 240
     def __init__(self):
         pygame.init()
-        self.screen = pygame.display.set_mode((700, 240))
+        self.screen = pygame.display.set_mode(self.size)
         self.draw_options = pymunk.pygame_util.DrawOptions(self.screen)
         self.running = True
 
     def run(self):
-        reloj = pygame.time.Clock()
         while self.running:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
                     pygame.image.save(self.screen, 'intro.png')
 
-            self.screen.fill(colores.Navy)
+            self.screen.fill(GRAY)
             space.debug_draw(self.draw_options)
             pygame.display.update()
             space.step(0.01)
-            reloj.tick(60)
 
+        pygame.quit()
 
 if __name__ == '__main__':
     p0, p1 = (0, 0), (700, 0)
