@@ -2,7 +2,7 @@ from pymunk_ejemplos.intro import *
 from recursos import colores
 
 
-segment = pymunk.Segment(b0, (2, 140), (800, 140), 22)
+segment = pymunk.Segment(b0, (2, 19), (800, 19), 22)
 segment.elasticity = 0.5
 segment.friction = 0.5
 

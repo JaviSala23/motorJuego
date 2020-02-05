@@ -2,7 +2,6 @@ import pymunk
 import pymunk.pygame_util
 import pygame
 from recursos import colores
-GRAY = (220, 220, 220)
 space = pymunk.Space()
 space.gravity = 0, -900
 b0 = space.static_body
@@ -31,7 +30,7 @@ class App:
             space.debug_draw(self.draw_options)
             j=0
             for l in range(100):
-                self.screen.blit(img,(0+j,380))
+                self.screen.blit(img,(0+j,500))
                 j=j+30
             pygame.display.update()
             
