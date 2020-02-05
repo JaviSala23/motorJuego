@@ -24,6 +24,7 @@ circle.elasticity = 0.95
 space.add(body, circle, segment)
 
 running = True
+reloj=pygame.time.Clock()
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -34,5 +35,5 @@ while running:
     space.debug_draw(draw_options)
     pygame.display.update()
     space.step(0.01)
-
+    reloj.tick(60)
 pygame.quit()

@@ -2,9 +2,10 @@ import pymunk
 import pymunk.pygame_util
 import pygame
 from recursos import colores
+pygame.init()
 space = pymunk.Space()
 space.gravity = 0, -900
-b0 = space.static_body
+
 
 
 
@@ -17,6 +18,7 @@ class App:
         self.running = True
 
     def run(self):
+        
         img=pygame.image.load("img/assets/Tiles/grass.png")
         img=pygame.transform.smoothscale(img, (40,40))
         reloj=pygame.time.Clock()
@@ -38,16 +40,3 @@ class App:
             reloj.tick(60)
         pygame.quit()
 
-if __name__ == '__main__':
-    p0, p1 = (0, 0), (700, 0)
-    segment = pymunk.Segment(b0, p0, p1, 4)
-    segment.elasticity = 1
-
-    body = pymunk.Body(mass=1, moment=10)
-    body.position = (100, 200)
-
-    circle = pymunk.Circle(body, radius=30)
-    circle.elasticity = 0.95
-    space.add(body, circle, segment)
-
-    App().run()
