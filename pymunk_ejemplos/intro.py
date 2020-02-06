@@ -6,6 +6,21 @@ pygame.init()
 space = pymunk.Space()
 space.gravity = 0, -900
 
+class circulo:
+    def __init__(self, masa, momentum, posicion, elasticidad,radio):
+        self.masa=masa
+        self.momentum=momentum
+        self.elasticidad=elasticidad
+        self.body = pymunk.Body()
+        self.radio = radio
+        self. posicion= posicion
+        self.body = pymunk.Body(mass=self.masa, moment=self.momentum)
+        self.body.position = self.posicion
+
+        circle = pymunk.Circle(self.body, radius=self.radio)
+        circle.elasticity = self.elasticidad
+        space.add(self.body,circle)
+
 
 
 
@@ -23,6 +38,7 @@ class App:
         img=pygame.transform.smoothscale(img, (40,40))
         reloj=pygame.time.Clock()
         while self.running:
+            tecla = pygame.key.get_pressed()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
@@ -35,7 +51,7 @@ class App:
                 self.screen.blit(img,(0+j,500))
                 j=j+30
             pygame.display.update()
-            
+            print(space.body)
             space.step(0.01)
             reloj.tick(60)
         pygame.quit()
