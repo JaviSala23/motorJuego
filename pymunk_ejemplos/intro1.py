@@ -13,7 +13,7 @@ space = pymunk.Space()
 space.gravity = 0, -900
 
 b0 = space.static_body
-segment = pymunk.Segment(b0, (0, 0), (640, 0), 4)
+segment = pymunk.Segment(b0, (2, 19), (800, 19), 4)
 segment.elasticity = 1
 
 body = pymunk.Body(mass=1, moment=10)

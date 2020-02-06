@@ -3,15 +3,14 @@ from recursos import colores
 
 
 b0 = space.static_body
-segment = pymunk.Segment( b0,(2, 19), (800, 19), 4)
-segment.elasticity = 0.99
+segment = pymunk.Segment(b0, (0, 35), (800, 35), 4)
+segment.elasticity = 1
 
+body = pymunk.Body(mass=1, moment=10)
+body.position = 100, 200
 
-body = pymunk.Body(mass=100, moment=100)
-body.position = 100, 500
-
-circle = pymunk.Circle(body,radius=30)
-circle.elasticty = 0.99
+circle = pymunk.Circle(body, radius=30)
+circle.elasticity = 0.95
 space.add(body, circle, segment)
 
 App().run()
