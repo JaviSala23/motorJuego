@@ -1,6 +1,8 @@
 import pymunk
 import pymunk.pygame_util
 import pygame
+import sys
+from pygame.locals import *
 from recursos import colores
 pygame.init()
 space = pymunk.Space()
@@ -13,14 +15,21 @@ class circulo:
         self.elasticidad=elasticidad
         self.body = pymunk.Body()
         self.radio = radio
-        self. posicion= posicion
+        self.posicion= posicion
         self.body = pymunk.Body(mass=self.masa, moment=self.momentum)
         self.body.position = self.posicion
 
-        circle = pymunk.Circle(self.body, radius=self.radio)
-        circle.elasticity = self.elasticidad
-        space.add(self.body,circle)
+        self.circle = pymunk.Circle(self.body, radius=self.radio)
+        self.circle.elasticity = self.elasticidad
+        space.add(self.body,self.circle)
+    def mover(self, keys):
+        if keys[K_RIGHT]:
+            self.body.position= self.body.position[0]
 
+    def mover(self, keys):
+        if keys[K_RIGHT]:
+            self.posicion=self.posicon[1]+1
+            
 
 
 
@@ -33,17 +42,19 @@ class App:
         self.running = True
 
     def run(self):
-        
+        circulo(1, 10, (50,200), 0.95,30)
         img=pygame.image.load("img/assets/Tiles/grass.png")
         img=pygame.transform.smoothscale(img, (40,40))
         reloj=pygame.time.Clock()
+
         while self.running:
-            tecla = pygame.key.get_pressed()
+            keys = pygame.key.get_pressed()
+            
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
                     pygame.image.save(self.screen, 'intro.png')
-
+            circulo.mover(keys)
             self.screen.fill(colores.Lime)
             space.debug_draw(self.draw_options)
             j=0
@@ -51,7 +62,6 @@ class App:
                 self.screen.blit(img,(0+j,500))
                 j=j+30
             pygame.display.update()
-            print(space.body)
             space.step(0.01)
             reloj.tick(60)
         pygame.quit()
